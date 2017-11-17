@@ -6,17 +6,21 @@ import MessageList from './MessageList';
 import Footer from './Footer';
 
 
-const MainContainer = () => {
+class MainContainer extends React.Component {
 
+
+  render(){
+    console.log('Props from MainContainer: ', this.props);
   return (
     <div>
       <Header />
       <ToolBar />
       <ComposeMessage />
-      <MessageList />
+      <MessageList msgData={this.props.msgData}/>
       <Footer />
     </div>
   )
+}
 }
 
 export default MainContainer;

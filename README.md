@@ -1,1 +1,1 @@
-This is an email app built in react.js
+This is an email UI app built in react.js
