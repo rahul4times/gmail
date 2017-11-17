@@ -2,9 +2,12 @@ import React from 'react';
 
 const MessageSubject = (props) => {
   console.log('Props from MessageSubject: ', props);
+
+  let readUnread = props.msgStatus? "row message read" : "row message unread";
+
   return (
     <div className="container">
-      <div className="row message read">
+      <div className={readUnread}>
         <div className="col-xs-1">
           <div className="row">
             <div className="col-xs-2">

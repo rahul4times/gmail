@@ -11,16 +11,16 @@ class MainContainer extends React.Component {
 
   render(){
     console.log('Props from MainContainer: ', this.props);
-  return (
-    <div>
-      <Header />
-      <ToolBar />
-      <ComposeMessage />
-      <MessageList msgData={this.props.msgData}/>
-      <Footer />
-    </div>
-  )
-}
+    return (
+      <div>
+        <Header />
+        <ToolBar />
+        <ComposeMessage />
+        <MessageList msgData={this.props.msgData}/>
+        <Footer />
+      </div>
+    )
+  }
 }
 
 export default MainContainer;
