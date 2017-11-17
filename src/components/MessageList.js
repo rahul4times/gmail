@@ -12,10 +12,10 @@ render(){
   <MessageSubject key={msg.id} msgSubject={msg.subject}/>);
 
   return (
-    <div className="container">
+    <div>
 
           {allMessages}
-        
+
     </div>
 
 
