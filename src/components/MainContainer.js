@@ -16,7 +16,9 @@ class MainContainer extends React.Component {
         <Header />
         <ToolBar />
         <ComposeMessage />
-        <MessageList msgData={this.props.msgData}/>
+        <MessageList msgData={this.props.msgData}
+        handleMsgSelectionCheckbox={this.props.handleMsgSelectionCheckbox}
+        />
         <Footer />
       </div>
     )

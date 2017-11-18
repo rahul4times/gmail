@@ -66,10 +66,21 @@ class App extends Component {
     ]
   }
 
+  handleMsgSelectionCheckbox = (updatedMsg) => {
+    console.log('Something: ', updatedMsg);
+    let check = this.state.msgData.filter((msg)=>{
+      msg.id == updatedMsg.id
+      
+    })
+
+  }
+
   render() {
     return (
       <div className="App">
-        <MainContainer msgData={this.state.msgData}/>
+        <MainContainer msgData={this.state.msgData}
+        handleMsgSelectionCheckbox={this.handleMsgSelectionCheckbox}
+        />
       </div>
     );
   }

@@ -9,8 +9,8 @@ class MessageList extends React.Component {
     console.log('Props from MessageList page: ', this.props);
 
     let allMessages = this.props.msgData.map((msg) =>
-    <MessageSubject key={msg.id} msgSubject={msg.subject} 
-    msgStatus={msg.read}
+    <MessageSubject key={msg.id} msgs={msg}
+    handleMsgSelectionCheckbox={this.props.handleMsgSelectionCheckbox}
     />);
 
     return (
