@@ -17,10 +17,14 @@ class MessageSubject extends React.Component {
           <div className="col-xs-1">
             <div className="row">
               <div className="col-xs-2">
+
+                {/* Checkboxs go here */}
                 <input type="checkbox" checked={checked}
                 onChange={()=>this.props.handleMsgCheckbox(this.props.msgs)}/>
               </div>
               <div className="col-xs-2">
+
+                {/* Star go here */}
                 <i className={`star fa ${msgStar}`}
                 value={this.props.msgs.starred}
                 onClick={()=>this.props.handleStars(this.props.msgs)}
@@ -29,8 +33,13 @@ class MessageSubject extends React.Component {
             </div>
           </div>
           <div className="col-xs-11">
-            <span className="label label-warning">dev</span>
-            <span className="label label-warning">gschool</span>
+
+            {/* Label goes here */}
+            {this.props.msgs.labels.map(label =>
+              <span className="label label-warning">{label}</span>)}
+
+
+            {/* Subjects go here */}
             {this.props.msgs.subject}
           </div>
         </div>

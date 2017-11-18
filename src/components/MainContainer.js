@@ -14,12 +14,28 @@ class MainContainer extends React.Component {
     return (
       <div>
         <Header />
-        <ToolBar />
+
+
+        {/* Toolbar goes here */}
+        <ToolBar
+        msgData={this.props.msgData}
+        toolbarSelectionHandler={this.props.toolbarSelectionHandler}
+        />
+
+
+        {/* Compose New Message goes here */}
         <ComposeMessage />
+
+
+        {/* Message List goes here */}
         <MessageList msgData={this.props.msgData}
         handleMsgCheckbox={this.props.handleMsgCheckbox}
         handleStars={this.props.handleStars}
+
         />
+
+
+
         <Footer />
       </div>
     )

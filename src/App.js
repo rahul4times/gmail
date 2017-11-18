@@ -82,7 +82,7 @@ class App extends Component {
   }
 
   handleStars = (currentStarMessage) => {
-    
+
     let index;
     let stateMsgClone = this.state.msgData.map((message, i) => {
       if (message.id === currentStarMessage.id) {
@@ -92,6 +92,13 @@ class App extends Component {
     })
     stateMsgClone[index].starred = !stateMsgClone[index].starred;
     this.setState({ msgData: stateMsgClone})
+  }
+
+  toolbarSelectionHandler = () => {
+
+    
+
+
   }
 
 
@@ -104,6 +111,7 @@ class App extends Component {
         <MainContainer msgData={this.state.msgData}
         handleMsgCheckbox={this.handleMsgCheckbox}
         handleStars={this.handleStars}
+        toolbarSelectionHandler={this.toolbarSelectionHandler}
         />
       </div>
     );
