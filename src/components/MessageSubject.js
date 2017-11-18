@@ -11,6 +11,9 @@ class MessageSubject extends React.Component {
     let msgStar = this.props.msgs.starred ? "fa-star" : "fa-star-o";
     let checked = msgSelected ? "checked" : "";
 
+    let labels = this.props.msgs.labels.map(label =>
+      <span className="label label-warning" key={label.id}></span>)
+
     return (
       <div className="container">
         <div className={`row message ${readUnread} ${msgSelected}`}>
@@ -35,8 +38,7 @@ class MessageSubject extends React.Component {
           <div className="col-xs-11">
 
             {/* Label goes here */}
-            {this.props.msgs.labels.map(label =>
-              <span className="label label-warning">{label}</span>)}
+            {labels}
 
 
             {/* Subjects go here */}

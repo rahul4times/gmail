@@ -33,7 +33,7 @@ class ToolBar extends React.Component {
               <i className="fa fa-plus"></i>
             </a>
 
-            <button className="btn btn-default" onClick={this.props.toolbarSelectionHandler}>
+            <button className="btn btn-default" onClick={()=>this.props.toolbarSelectionHandler(this.props.msgData)}>
               <i className={`fa ${defaultIcon}`}></i>
             </button>
 

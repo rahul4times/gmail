@@ -94,10 +94,17 @@ class App extends Component {
     this.setState({ msgData: stateMsgClone})
   }
 
-  toolbarSelectionHandler = () => {
-
-    
-
+  toolbarSelectionHandler = (input) => {
+    let index;
+    let stateMsgClone = this.state.msgData.map((message, i) => {
+      if(!message.selected){
+        //index = i;
+        message.selected = true;
+      }
+      return {...message};
+    })
+    stateMsgClone.selected = !stateMsgClone.selected;
+    this.setState({ msgData: stateMsgClone})
 
   }
 
