@@ -18,8 +18,7 @@ class MainContainer extends React.Component {
         <ComposeMessage />
         <MessageList msgData={this.props.msgData}
         handleMsgCheckbox={this.props.handleMsgCheckbox}
-        getInitialState={this.props.getInitialState}
-        handleStar={this.props.handleStar}
+        handleStars={this.props.handleStars}
         />
         <Footer />
       </div>

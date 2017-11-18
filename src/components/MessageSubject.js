@@ -21,7 +21,10 @@ class MessageSubject extends React.Component {
                 onChange={()=>this.props.handleMsgCheckbox(this.props.msgs)}/>
               </div>
               <div className="col-xs-2">
-                <i className={`star fa ${msgStar}`} ></i>
+                <i className={`star fa ${msgStar}`}
+                value={this.props.msgs.starred}
+                onClick={()=>this.props.handleStars(this.props.msgs)}
+                ></i>
               </div>
             </div>
           </div>

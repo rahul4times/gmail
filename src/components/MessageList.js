@@ -8,10 +8,11 @@ class MessageList extends React.Component {
   render(){
     let allMessages = this.props.msgData.map((msg) =>
     <MessageSubject key={msg.id}
+    // this sends whole object
     msgs={msg}
+    // this handles checkbox control
     handleMsgCheckbox={this.props.handleMsgCheckbox}
-    getInitialState={this.props.getInitialState}
-    handleStar={this.props.handleStar}
+    handleStars={this.props.handleStars}
     />);
 
     return (
