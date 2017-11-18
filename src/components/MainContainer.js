@@ -10,14 +10,16 @@ class MainContainer extends React.Component {
 
 
   render(){
-    console.log('Props from MainContainer: ', this.props);
+
     return (
       <div>
         <Header />
         <ToolBar />
         <ComposeMessage />
         <MessageList msgData={this.props.msgData}
-        handleMsgSelectionCheckbox={this.props.handleMsgSelectionCheckbox}
+        handleMsgCheckbox={this.props.handleMsgCheckbox}
+        getInitialState={this.props.getInitialState}
+        handleStar={this.props.handleStar}
         />
         <Footer />
       </div>

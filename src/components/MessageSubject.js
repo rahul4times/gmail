@@ -11,11 +11,13 @@ class MessageSubject extends React.Component {
 
   render(){
 
-  console.log('Props from MessageSubject: ', this.props);
+  console.log('output: ', this.props.msgs.selected);
 
   let readUnread = this.props.msgs.read ? "read" : "unread";
+  let msgSelected = this.props.msgs.selected ? "selected" : '';
+  let msgStar = this.props.msgs.starred ? "fa-star" : "fa-star-o";
 
-  let msgSelected = this.props.msgs.selected ? "selected" : readUnread;
+
 
   return (
     <div className="container">
@@ -24,10 +26,10 @@ class MessageSubject extends React.Component {
           <div className="row">
             <div className="col-xs-2">
               <input type="checkbox" checked={this.props.msgs.selected}
-              onChange={()=>this.props.handleMsgSelectionCheckbox(this.props.msgs)}/>
+              onChange={()=>this.props.handleMsgCheckbox(this.props.msgs)}/>
             </div>
             <div className="col-xs-2">
-              <i className="star fa fa-star"></i>
+              <i className={`star fa ${msgStar}`} ></i>
             </div>
           </div>
         </div>

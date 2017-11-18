@@ -66,20 +66,36 @@ class App extends Component {
     ]
   }
 
-  handleMsgSelectionCheckbox = (updatedMsg) => {
-    console.log('Something: ', updatedMsg);
-    let check = this.state.msgData.filter((msg)=>{
-      msg.id == updatedMsg.id
-      
+
+
+  handleMsgCheckbox = (selectedMessage) => {
+
+    console.log('from app.js: ', selectedMessage);
+    let index;
+
+    let stateMsgClone = this.state.msgData.map((message, i) => {
+      if (message.id === selectedMessage.id) {
+        index = i;
+      }
+      return {...message};
     })
 
+    stateMsgClone[index].selected = !stateMsgClone[index].selected;
+    this.setState({ msgData: stateMsgClone})
+
   }
+
+
+
+
 
   render() {
     return (
       <div className="App">
         <MainContainer msgData={this.state.msgData}
-        handleMsgSelectionCheckbox={this.handleMsgSelectionCheckbox}
+        handleMsgCheckbox={this.handleMsgCheckbox}
+        getInitialState={this.getInitialState}
+        handleStar={this.handleStar}
         />
       </div>
     );
