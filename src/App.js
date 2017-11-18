@@ -69,25 +69,17 @@ class App extends Component {
 
 
   handleMsgCheckbox = (selectedMessage) => {
-
-    console.log('from app.js: ', selectedMessage);
     let index;
-
     let stateMsgClone = this.state.msgData.map((message, i) => {
       if (message.id === selectedMessage.id) {
         index = i;
       }
       return {...message};
     })
-
     stateMsgClone[index].selected = !stateMsgClone[index].selected;
     this.setState({ msgData: stateMsgClone})
 
   }
-
-
-
-
 
   render() {
     return (

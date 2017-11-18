@@ -6,8 +6,6 @@ class MessageList extends React.Component {
 
 
   render(){
-
-    console.log("MSG List props", this.props.msgData);
     let allMessages = this.props.msgData.map((msg) =>
     <MessageSubject key={msg.id}
     msgs={msg}
