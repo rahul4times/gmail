@@ -129,21 +129,23 @@ class App extends Component {
       alert('Message not selected!');
     } else {
 
-    // input is full object but with selected message status = true
-    // Using filter to find out which message is selected out of all
-      let index;
+      // input is full object but with selected message status = true
+      // Using filter to find out which message is selected out of all
+      let index = [];
       let stateMsgClone = this.state.msgData.map((message, i) => {
         input.map((inp, y) => {
           if (message.id === inp.id){
-            index = i;
+            index.push(i);
           }
         })
         return {...message};
       })
-      
-      stateMsgClone[index].read = true;
 
-      this.setState({ msgData: stateMsgClone})
+      // if more than one messages are selected then this will take care of all
+      let actionOnSelected = index.map(position => {
+        stateMsgClone[position].read = true;
+        this.setState({ msgData: stateMsgClone})
+      })
     }
   }
 
@@ -155,21 +157,23 @@ class App extends Component {
       alert('Message not selected!');
     } else {
 
-      // input is full object but with selected message status = true
+      // input is a full object but with selected message status = true
       // Using filter to find out which message is selected out of all
-      let currentMessage = input.filter((msg) => {
-        return msg.selected === true;
-      });
-
-      let index;
+      let index = [];
       let stateMsgClone = this.state.msgData.map((message, i) => {
-        if (message.id === currentMessage[0].id) {
-          index = i;
-        }
+        input.map((inp, y) => {
+          if (message.id === inp.id){
+            index.push(i);
+          }
+        })
         return {...message};
       })
-      stateMsgClone[index].read = false;
-      this.setState({ msgData: stateMsgClone})
+
+      // if more than one messages are selected then this will take care of all
+      let actionOnSelected = index.map(position => {
+        stateMsgClone[position].read = false;
+        this.setState({ msgData: stateMsgClone})
+      })
     }
   }
 
