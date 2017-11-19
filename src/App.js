@@ -67,9 +67,8 @@ class App extends Component {
   }
 
 
-
+  // This function handles select individual message checkbox
   handleMsgCheckbox = (selectedMessage) => {
-
     let index;
     let stateMsgClone = this.state.msgData.map((message, i) => {
       if (message.id === selectedMessage.id) {
@@ -81,8 +80,8 @@ class App extends Component {
     this.setState({ msgData: stateMsgClone})
   }
 
+  // This function handles stars
   handleStars = (currentStarMessage) => {
-
     let index;
     let stateMsgClone = this.state.msgData.map((message, i) => {
       if (message.id === currentStarMessage.id) {
@@ -94,21 +93,31 @@ class App extends Component {
     this.setState({ msgData: stateMsgClone})
   }
 
-  toolbarSelectionHandler = (input) => {
-    let index;
-    let stateMsgClone = this.state.msgData.map((message, i) => {
-      if(!message.selected){
-        //index = i;
-        message.selected = true;
-      }
-      return {...message};
-    })
-    stateMsgClone.selected = !stateMsgClone.selected;
-    this.setState({ msgData: stateMsgClone})
-
+  // This function handles select all or deselect all
+  // This function displays two other functions unselectAll and selectAllMsg
+  toolbarSelectionHandler = (icon) => {
+    if(icon === 'fa-check-square-o'){
+      this.unselectAll();
+    }else{
+      this.selectAllMsg()
+    }
   }
-
-
+  // This function is connected to toolbarSelectionHandler
+  unselectAll(){
+    let newState =this.state.msgData.map(message => {
+      message.selected = false;
+      return {...message}
+    });
+    this.setState({msgData: newState});
+  }
+  // This function is connected to toolbarSelectionHandler
+  selectAllMsg(){
+    let newState =this.state.msgData.map(message => {
+      message.selected = true;
+      return {...message}
+    });
+    this.setState({msgData: newState});
+  }
 
 
 
