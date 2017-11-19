@@ -67,8 +67,10 @@ class App extends Component {
   }
 
 
+
   // This function handles select individual message checkbox
   handleMsgCheckbox = (selectedMessage) => {
+
     let index;
     let stateMsgClone = this.state.msgData.map((message, i) => {
       if (message.id === selectedMessage.id) {
@@ -119,16 +121,63 @@ class App extends Component {
     this.setState({msgData: newState});
   }
 
+  // This function handles Mark As Read button
+  markAsReadBtn = (input) => {
+
+    // input is full object but with selected message status = true
+    // Using filter to find out which message is selected out of all
+    let currentMessage = input.filter((msg) => {
+      return msg.selected === true;
+    });
+
+    let index;
+    let stateMsgClone = this.state.msgData.map((message, i) => {
+      if (message.id === currentMessage[0].id) {
+        index = i;
+      }
+      return {...message};
+    })
+    stateMsgClone[index].read = true;
+    this.setState({ msgData: stateMsgClone})
+  }
+
+  // This function handles Mark As Unread button
+  markAsUnReadBtn = (input) => {
+
+    // input is full object but with selected message status = true
+    // Using filter to find out which message is selected out of all
+    let currentMessage = input.filter((msg) => {
+      return msg.selected === true;
+    });
+
+    let index;
+    let stateMsgClone = this.state.msgData.map((message, i) => {
+      if (message.id === currentMessage[0].id) {
+        index = i;
+      }
+      return {...message};
+    })
+    stateMsgClone[index].read = false;
+    this.setState({ msgData: stateMsgClone})
+  }
+
 
 
   render() {
     return (
       <div className="App">
-        <MainContainer msgData={this.state.msgData}
+
+        <MainContainer
+
+        msgData={this.state.msgData}
         handleMsgCheckbox={this.handleMsgCheckbox}
         handleStars={this.handleStars}
         toolbarSelectionHandler={this.toolbarSelectionHandler}
+        markAsReadBtn={this.markAsReadBtn}
+        markAsUnReadBtn={this.markAsUnReadBtn}
+
         />
+
       </div>
     );
   }

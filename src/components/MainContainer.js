@@ -20,6 +20,8 @@ class MainContainer extends React.Component {
         <ToolBar
         msgData={this.props.msgData}
         toolbarSelectionHandler={this.props.toolbarSelectionHandler}
+        markAsReadBtn={this.props.markAsReadBtn}
+        markAsUnReadBtn={this.props.markAsUnReadBtn}
         />
 
 

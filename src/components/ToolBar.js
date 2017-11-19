@@ -1,9 +1,12 @@
 import React from 'react';
 
+
 class ToolBar extends React.Component {
 
   render(){
 
+
+    // currentSelected and defaultIcon take care for icon for select all button
     let currentSelected = this.props.msgData.filter(msg => {
       return msg.selected
     });
@@ -14,11 +17,6 @@ class ToolBar extends React.Component {
         currentSelected.length === 0 ?
           "fa-square-o" :
           "fa-check-square-o";
-
-
-
-
-
 
     return (
       <div className="container">
@@ -37,9 +35,13 @@ class ToolBar extends React.Component {
               <i className={`fa ${defaultIcon}`}></i>
             </button>
 
-            <button className="btn btn-default">Mark As Read</button>
+            <button className="btn btn-default"
+              onClick={()=>this.props.markAsReadBtn(this.props.msgData)}
+            >Mark As Read</button>
 
-            <button className="btn btn-default">Mark As Unread</button>
+            <button className="btn btn-default"
+              onClick={()=>this.props.markAsUnReadBtn(this.props.msgData)}
+            >Mark As Unread</button>
 
             <select className="form-control label-select">
               <option>Apply label</option>
