@@ -29,13 +29,13 @@ class ToolBar extends React.Component {
     });
 
 
-
     return (
       <div className="container">
         <div className="row toolbar">
           <div className="col-md-12">
             <p className="pull-right">
-              <span className="badge badge">{totalUnread.length}</span>
+              <span className="badge badge">
+              {totalUnread.length}</span>
               Unread Messages
             </p>
 
