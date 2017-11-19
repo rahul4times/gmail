@@ -21,9 +21,7 @@ class ToolBar extends React.Component {
     // This will send only selected Messages
     let selectedMessages = this.props.msgData.filter(msg => {
       return msg.selected === true;
-    })
-
-    console.log('read: ', selectedMessages);
+    });
 
     return (
       <div className="container">
@@ -47,7 +45,7 @@ class ToolBar extends React.Component {
             >Mark As Read</button>
 
             <button className="btn btn-default"
-              onClick={()=>this.props.markAsUnReadBtn(this.props.msgData)}
+              onClick={()=>this.props.markAsUnReadBtn(selectedMessages)}
             >Mark As Unread</button>
 
             <select className="form-control label-select">

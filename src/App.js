@@ -123,45 +123,54 @@ class App extends Component {
 
   // This function handles Mark As Read button
   markAsReadBtn = (input) => {
-    console.log('input: ', input);
+
+    // if user clicks on Mark as read button without selecting message that this fires
+    if(input.length === 0){
+      alert('Message not selected!');
+    } else {
+
     // input is full object but with selected message status = true
     // Using filter to find out which message is selected out of all
+      let index;
+      let stateMsgClone = this.state.msgData.map((message, i) => {
+        input.map((inp, y) => {
+          if (message.id === inp.id){
+            index = i;
+          }
+        })
+        return {...message};
+      })
+      
+      stateMsgClone[index].read = true;
 
-    let index;
-    let stateMsgClone = this.state.msgData.map((message, i) => {
-
-
-
-      if (message.id === input[0].id){
-        index = i;
-      }
-
-
-
-      return {...message};
-    })
-    stateMsgClone[index].read = true;
-    this.setState({ msgData: stateMsgClone})
+      this.setState({ msgData: stateMsgClone})
+    }
   }
 
   // This function handles Mark As Unread button
   markAsUnReadBtn = (input) => {
 
-    // input is full object but with selected message status = true
-    // Using filter to find out which message is selected out of all
-    let currentMessage = input.filter((msg) => {
-      return msg.selected === true;
-    });
+    // if user clicks on Mark as unread button without selecting message that this fires
+    if(input.length === 0){
+      alert('Message not selected!');
+    } else {
 
-    let index;
-    let stateMsgClone = this.state.msgData.map((message, i) => {
-      if (message.id === currentMessage[0].id) {
-        index = i;
-      }
-      return {...message};
-    })
-    stateMsgClone[index].read = false;
-    this.setState({ msgData: stateMsgClone})
+      // input is full object but with selected message status = true
+      // Using filter to find out which message is selected out of all
+      let currentMessage = input.filter((msg) => {
+        return msg.selected === true;
+      });
+
+      let index;
+      let stateMsgClone = this.state.msgData.map((message, i) => {
+        if (message.id === currentMessage[0].id) {
+          index = i;
+        }
+        return {...message};
+      })
+      stateMsgClone[index].read = false;
+      this.setState({ msgData: stateMsgClone})
+    }
   }
 
 
