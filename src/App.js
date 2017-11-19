@@ -123,18 +123,21 @@ class App extends Component {
 
   // This function handles Mark As Read button
   markAsReadBtn = (input) => {
-
+    console.log('input: ', input);
     // input is full object but with selected message status = true
     // Using filter to find out which message is selected out of all
-    let currentMessage = input.filter((msg) => {
-      return msg.selected === true;
-    });
 
     let index;
     let stateMsgClone = this.state.msgData.map((message, i) => {
-      if (message.id === currentMessage[0].id) {
+
+
+
+      if (message.id === input[0].id){
         index = i;
       }
+
+
+
       return {...message};
     })
     stateMsgClone[index].read = true;

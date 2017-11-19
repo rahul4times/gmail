@@ -18,6 +18,13 @@ class ToolBar extends React.Component {
           "fa-square-o" :
           "fa-check-square-o";
 
+    // This will send only selected Messages
+    let selectedMessages = this.props.msgData.filter(msg => {
+      return msg.selected === true;
+    })
+
+    console.log('read: ', selectedMessages);
+
     return (
       <div className="container">
         <div className="row toolbar">
@@ -36,7 +43,7 @@ class ToolBar extends React.Component {
             </button>
 
             <button className="btn btn-default"
-              onClick={()=>this.props.markAsReadBtn(this.props.msgData)}
+              onClick={()=>this.props.markAsReadBtn(selectedMessages)}
             >Mark As Read</button>
 
             <button className="btn btn-default"
