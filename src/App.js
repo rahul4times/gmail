@@ -187,7 +187,7 @@ class App extends Component {
       let stateMsgClone = this.state.msgData.map((message, i) => {
         input.map((inp, y) => {
           if (message.id === inp.id){
-            index.push(i);
+            index.push(message);
           }
         })
         return {...message};
@@ -198,10 +198,11 @@ class App extends Component {
         this.setState({ msgData: stateMsgClone});
       } else {
         index.map(item => {
-          stateMsgClone.splice(item, item);
+          stateMsgClone.splice(item, index.length);
           this.setState({ msgData: stateMsgClone});
         })
       }
+
     }
   }
 
