@@ -69,7 +69,9 @@ class ToolBar extends React.Component {
               <option value="gschool">gschool</option>
             </select>
 
-            <button className="btn btn-default">
+            <button className="btn btn-danger"
+              onClick={()=> this.props.removeMessage(selectedMessages)}
+            >
               <i className="fa fa-trash-o"></i>
             </button>
           </div>

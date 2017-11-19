@@ -123,15 +123,14 @@ class App extends Component {
 
   // This function handles Mark As Read button
   markAsReadBtn = (input) => {
-
     // if user clicks on Mark as read button without selecting message that this fires
+    let index = [];
     if(input.length === 0){
       alert('Message not selected!');
     } else {
 
       // input is full object but with selected message status = true
       // Using filter to find out which message is selected out of all
-      let index = [];
       let stateMsgClone = this.state.msgData.map((message, i) => {
         input.map((inp, y) => {
           if (message.id === inp.id){
@@ -153,13 +152,13 @@ class App extends Component {
   markAsUnReadBtn = (input) => {
 
     // if user clicks on Mark as unread button without selecting message that this fires
+    let index = [];
     if(input.length === 0){
       alert('Message not selected!');
     } else {
 
       // input is a full object but with selected message status = true
       // Using filter to find out which message is selected out of all
-      let index = [];
       let stateMsgClone = this.state.msgData.map((message, i) => {
         input.map((inp, y) => {
           if (message.id === inp.id){
@@ -177,6 +176,34 @@ class App extends Component {
     }
   }
 
+  // This function handles removing message
+  removeMessage = (input) => {
+
+    // if user clicks on Mark as trash button without selecting message that this fires
+    let index = [];
+    if(input.length === 0){
+      alert('Message not selected!');
+    } else {
+      let stateMsgClone = this.state.msgData.map((message, i) => {
+        input.map((inp, y) => {
+          if (message.id === inp.id){
+            index.push(i);
+          }
+        })
+        return {...message};
+      })
+      console.log('index: ', index);
+
+      console.log('stateMsgClone: ', stateMsgClone);
+
+        stateMsgClone.splice(index, index.length);
+
+
+        this.setState({ msgData: stateMsgClone})
+
+    }
+  }
+
 
 
   render() {
@@ -191,7 +218,7 @@ class App extends Component {
         toolbarSelectionHandler={this.toolbarSelectionHandler}
         markAsReadBtn={this.markAsReadBtn}
         markAsUnReadBtn={this.markAsUnReadBtn}
-
+        removeMessage={this.removeMessage}
         />
 
       </div>
