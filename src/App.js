@@ -192,13 +192,13 @@ class App extends Component {
         })
         return {...message};
       })
-      
+
       if(index.length === 1){
-        let result= stateMsgClone.splice(index, index.length);
+        stateMsgClone.splice(index, index.length);
         this.setState({ msgData: stateMsgClone});
       } else {
-        let result = index.map(item => {
-          stateMsgClone.splice(item, index.length);
+        index.map(item => {
+          stateMsgClone.splice(item, item);
           this.setState({ msgData: stateMsgClone});
         })
       }
