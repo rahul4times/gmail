@@ -23,13 +23,20 @@ class ToolBar extends React.Component {
       return msg.selected === true;
     });
 
+    // This will count unread messages
+    let totalUnread = this.props.msgData.filter(msg => {
+      return msg.read === false;
+    });
+
+
+
     return (
       <div className="container">
         <div className="row toolbar">
           <div className="col-md-12">
             <p className="pull-right">
-              <span className="badge badge">2</span>
-              unread messages
+              <span className="badge badge">{totalUnread.length}</span>
+              Unread Messages
             </p>
 
             <a className="btn btn-success">
