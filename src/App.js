@@ -190,14 +190,25 @@ class App extends Component {
 
   // This adds labels
   addLabels = (input) => {
-    console.log('input type: ', input);
-    let index;
-    let duplicate = this.state.msgData.map((msg, i) =>{
+
+    let duplicate = this.state.msgData.map(msg => {
       if(msg.selected && !msg.labels.includes(input)) msg.labels.push(input)
       return {...msg}
     });
 
     this.setState({msgData: duplicate});
+
+  }
+
+  // This removes labels
+  removeLabels = (input) => {
+
+    let newState = this.state.msgData.map(msg => {
+      if(msg.selected) msg.labels = msg.labels.filter(l => l !== input)
+      return msg
+    })
+    
+    this.setState({ messages: newState })
 
   }
 
@@ -207,7 +218,6 @@ class App extends Component {
       <div className="App">
 
         <MainContainer
-
         msgData={this.state.msgData}
         handleMsgCheckbox={this.handleMsgCheckbox}
         handleStars={this.handleStars}
@@ -216,6 +226,7 @@ class App extends Component {
         markAsUnReadBtn={this.markAsUnReadBtn}
         removeMessage={this.removeMessage}
         addLabels={this.addLabels}
+        removeLabels={this.removeLabels}
         />
 
       </div>

@@ -24,6 +24,7 @@ class MainContainer extends React.Component {
         markAsUnReadBtn={this.props.markAsUnReadBtn}
         removeMessage={this.props.removeMessage}
         addLabels={this.props.addLabels}
+        removeLabels={this.props.removeLabels}
         />
 
 
