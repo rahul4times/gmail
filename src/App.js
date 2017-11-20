@@ -193,20 +193,12 @@ class App extends Component {
     console.log('input type: ', input);
     let index;
     let duplicate = this.state.msgData.map((msg, i) =>{
-      if(msg.selected === true){
-        index = i;
-
-        msg.labels.push(input);
-      }
+      if(msg.selected && !msg.labels.includes(input)) msg.labels.push(input)
       return {...msg}
     });
 
     this.setState({msgData: duplicate});
 
-
-
-    // duplicate[index].selected = !stateMsgClone[index].selected;
-    // this.setState({ msgData: stateMsgClone})
   }
 
 
