@@ -180,28 +180,11 @@ class App extends Component {
   removeMessage = (input) => {
 
     // if user clicks on Mark as trash button without selecting message that this fires
-    let index = [];
     if(input.length === 0){
       alert('Message not selected!');
     } else {
-      let stateMsgClone = this.state.msgData.map((message, i) => {
-        input.map((inp, y) => {
-          if (message.id === inp.id){
-            index.push(message);
-          }
-        })
-        return {...message};
-      })
-
-      if(index.length === 1){
-        stateMsgClone.splice(index, index.length);
-        this.setState({ msgData: stateMsgClone});
-      } else {
-        index.map(item => {
-          stateMsgClone.splice(item, index.length);
-          this.setState({ msgData: stateMsgClone});
-        })
-      }
+      let newState =this.state.msgData.filter((message) => !message.selected)
+      this.setState({msgData: newState});
     }
   }
 
@@ -212,6 +195,7 @@ class App extends Component {
     let duplicate = this.state.msgData.map((msg, i) =>{
       if(msg.selected === true){
         index = i;
+
         msg.labels.push(input);
       }
       return {...msg}
