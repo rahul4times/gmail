@@ -202,10 +202,28 @@ class App extends Component {
           this.setState({ msgData: stateMsgClone});
         })
       }
-
     }
   }
 
+  // This adds labels
+  addLabels = (input) => {
+    console.log('input type: ', input);
+    let index;
+    let duplicate = this.state.msgData.map((msg, i) =>{
+      if(msg.selected === true){
+        index = i;
+        msg.labels.push(input);
+      }
+      return {...msg}
+    });
+
+    this.setState({msgData: duplicate});
+
+
+
+    // duplicate[index].selected = !stateMsgClone[index].selected;
+    // this.setState({ msgData: stateMsgClone})
+  }
 
 
   render() {
@@ -221,6 +239,7 @@ class App extends Component {
         markAsReadBtn={this.markAsReadBtn}
         markAsUnReadBtn={this.markAsUnReadBtn}
         removeMessage={this.removeMessage}
+        addLabels={this.addLabels}
         />
 
       </div>

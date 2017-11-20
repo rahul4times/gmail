@@ -12,7 +12,7 @@ class MessageSubject extends React.Component {
     let checked = msgSelected ? "checked" : "";
 
     let labels = this.props.msgs.labels.map(label =>
-      <span className="label label-warning" key={label.id}></span>)
+      <span className="label label-warning" key={label.id}>{label}</span>)
 
     return (
       <div className="container">

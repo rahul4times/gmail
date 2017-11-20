@@ -6,6 +6,7 @@ class ToolBar extends React.Component {
   render(){
 
 
+
     // currentSelected and defaultIcon take care for icon for select all button
     let currentSelected = this.props.msgData.filter(msg => {
       return msg.selected
@@ -55,7 +56,10 @@ class ToolBar extends React.Component {
               onClick={()=>this.props.markAsUnReadBtn(selectedMessages)}
             >Mark As Unread</button>
 
-            <select className="form-control label-select">
+            <select className="form-control label-select"
+              onChange={(event) => this.props.addLabels(event.target.value)}
+
+            >
               <option>Apply label</option>
               <option value="dev">dev</option>
               <option value="personal">personal</option>
