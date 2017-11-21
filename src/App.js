@@ -66,8 +66,6 @@ class App extends Component {
     ]
   }
 
-
-
   // This function handles select individual message checkbox
   handleMsgCheckbox = (selectedMessage) => {
 
@@ -207,7 +205,7 @@ class App extends Component {
       if(msg.selected) msg.labels = msg.labels.filter(l => l !== input)
       return msg
     })
-    
+
     this.setState({ messages: newState })
 
   }
