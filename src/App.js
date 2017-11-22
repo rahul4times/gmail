@@ -28,9 +28,9 @@ class App extends Component {
     this.setState({ show: !show });
   }
 
-  postNewMessage = (input) => {
-    console.log(input);
 
+  // This function handles composing message
+  postNewMessage = (input) => {
 
     axios.post(`http://localhost:8000/messages`, {
 
@@ -53,7 +53,6 @@ class App extends Component {
     .catch(error => {
       console.log(error);
     });
-
 
   }
 
@@ -84,8 +83,7 @@ class App extends Component {
       return {...message};
     })
     stateMsgClone[index].starred = !stateMsgClone[index].starred;
-    console.log('starred: ', stateMsgClone[index].starred);
-
+    
     axios.patch(`http://localhost:8000/messages/${currentStarMessage.id}`, {
 
       starred: stateMsgClone[index].starred
