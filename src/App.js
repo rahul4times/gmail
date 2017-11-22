@@ -83,7 +83,7 @@ class App extends Component {
       return {...message};
     })
     stateMsgClone[index].starred = !stateMsgClone[index].starred;
-    
+
     axios.patch(`http://localhost:8000/messages/${currentStarMessage.id}`, {
 
       starred: stateMsgClone[index].starred
@@ -126,6 +126,8 @@ class App extends Component {
 
   // This function handles Mark As Read button
   markAsReadBtn = (input) => {
+
+    console.log('readunread: ', input);
     // if user clicks on Mark as read button without selecting message that this fires
     let index = [];
     if(input.length === 0){
@@ -146,7 +148,18 @@ class App extends Component {
       // if more than one messages are selected then this will take care of all
       let actionOnSelected = index.map(position => {
         stateMsgClone[position].read = true;
-        this.setState({ msgData: stateMsgClone})
+
+      axios.patch(`http://localhost:8000/messages/${stateMsgClone[position].id}`,{
+        read: stateMsgClone[position].read
+      })
+      .then(response => {
+        let updatedResult = response.data;
+        this.setState({ msgData: updatedResult})
+      })
+      .catch(error => {
+        console.log(error);
+      })
+
       })
     }
   }
@@ -174,7 +187,16 @@ class App extends Component {
       // if more than one messages are selected then this will take care of all
       let actionOnSelected = index.map(position => {
         stateMsgClone[position].read = false;
-        this.setState({ msgData: stateMsgClone})
+        axios.patch(`http://localhost:8000/messages/${stateMsgClone[position].id}`,{
+          read: stateMsgClone[position].read
+        })
+        .then(response => {
+          let updatedResult = response.data;
+          this.setState({ msgData: updatedResult})
+        })
+        .catch(error => {
+          console.log(error);
+        })
       })
     }
   }
