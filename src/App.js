@@ -208,8 +208,16 @@ class App extends Component {
     if(input.length === 0){
       alert('Message not selected!');
     } else {
-      let newState =this.state.msgData.filter((message) => !message.selected)
-      this.setState({msgData: newState});
+      let messagesNeedToBeDeleted = input.map(msg => {
+        axios.delete(`http://localhost:8000/messages/${msg.id}`)
+        .then(response => {
+          let updatedResult = response.data;
+          this.setState({ msgData: updatedResult})
+        })
+        .catch(error => {
+          console.log(error);
+        })
+      })
     }
   }
 
