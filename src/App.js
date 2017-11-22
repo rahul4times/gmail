@@ -127,7 +127,6 @@ class App extends Component {
   // This function handles Mark As Read button
   markAsReadBtn = (input) => {
 
-    console.log('readunread: ', input);
     // if user clicks on Mark as read button without selecting message that this fires
     let index = [];
     if(input.length === 0){
@@ -223,13 +222,38 @@ class App extends Component {
 
   // This adds labels
   addLabels = (input) => {
-
+    console.log('input: ', input);
     let duplicate = this.state.msgData.map(msg => {
       if(msg.selected && !msg.labels.includes(input)) msg.labels.push(input)
       return {...msg}
     });
 
-    this.setState({msgData: duplicate});
+    let result = duplicate.map(msg => {
+      if(msg.selected){
+        console.log('result: ', msg.id);
+        axios.patch(`http://localhost:8000/messages/${msg.id}`,{
+          labels: JSON.stringify([msg.labels])
+        })
+        .then(response => {
+          console.log('response: ', response);
+          let updatedResult = response.data;
+          this.setState({ msgData: updatedResult})
+        })
+        .catch(error => {
+          console.log(error);
+        })
+
+
+
+
+      }
+    })
+
+
+
+
+
+    //this.setState({msgData: duplicate});
 
   }
 
