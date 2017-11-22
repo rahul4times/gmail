@@ -3,8 +3,8 @@ import React from 'react';
 class ComposeMessage extends React.Component {
 
   state = {
-    subject:'',
-    body:''
+    subject: '',
+    body: ''
   }
   handleMsgSubmit = (e) => {
     e.preventDefault();

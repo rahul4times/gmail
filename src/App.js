@@ -28,21 +28,31 @@ class App extends Component {
     this.setState({ show: !show });
   }
 
-  postNewMessage = () => {
+  postNewMessage = (input) => {
+    console.log('input:', input);
     axios.post(`http://localhost:8000/messages`, {
-      "subject": "Clearly everything with an exclamation point is important!", "starred": false,
-      "read": false,
-      "labels": [],
-      "body": "UMMMMM...",
-      "selected": false
+
+      subject: input.subject,
+      starred: false,
+      read: false,
+      labels: JSON.stringify([]),
+      body: input.body,
+      selected: false
+
     })
 
-    .then(function (response) {
-      console.log(response);
+    .then(response => {
+
+      let updatedResult = response.data;
+      let show = this.state.show;
+      this.setState({ show: !show, msgData: updatedResult });
     })
-    .catch(function (error) {
+
+    .catch(error => {
       console.log(error);
     });
+
+
   }
 
 
@@ -219,7 +229,7 @@ class App extends Component {
         removeMessage={this.removeMessage}
 
         addLabels={this.addLabels}
-        
+
         removeLabels={this.removeLabels}
         />
 
