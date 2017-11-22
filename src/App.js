@@ -29,7 +29,9 @@ class App extends Component {
   }
 
   postNewMessage = (input) => {
-    console.log('input:', input);
+    console.log(input);
+
+
     axios.post(`http://localhost:8000/messages`, {
 
       subject: input.subject,
@@ -73,6 +75,7 @@ class App extends Component {
 
   // This function handles stars
   handleStars = (currentStarMessage) => {
+
     let index;
     let stateMsgClone = this.state.msgData.map((message, i) => {
       if (message.id === currentStarMessage.id) {
@@ -81,7 +84,20 @@ class App extends Component {
       return {...message};
     })
     stateMsgClone[index].starred = !stateMsgClone[index].starred;
-    this.setState({ msgData: stateMsgClone})
+    console.log('starred: ', stateMsgClone[index].starred);
+
+    axios.patch(`http://localhost:8000/messages/${currentStarMessage.id}`, {
+
+      starred: stateMsgClone[index].starred
+
+    })
+    .then(response => {
+      let updatedResult = response.data;
+      this.setState({ msgData: updatedResult})
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
   // This function handles select all or deselect all
