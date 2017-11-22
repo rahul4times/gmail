@@ -5,7 +5,8 @@ import axios from 'axios';
 class App extends Component {
 
   state = {
-    msgData:[]
+    msgData:[],
+    show: false
   }
 
 
@@ -18,7 +19,13 @@ class App extends Component {
       let msgsFromApi = arrayOfResolvedPromise[0].data;
       this.setState({msgData: msgsFromApi});
     })
-    
+
+  }
+
+  // This function handles show/hide compose message
+  composeNewMessage = () => {
+    let show = this.state.show;
+    this.setState({ show: !show });
   }
 
 
@@ -168,11 +175,14 @@ class App extends Component {
 
 
   render() {
+
     return (
       <div className="App">
 
         <MainContainer
         msgData={this.state.msgData}
+        composeNewMessage={this.composeNewMessage}
+        gettingStateForNewMessage={this.state.show}
         handleMsgCheckbox={this.handleMsgCheckbox}
         handleStars={this.handleStars}
         toolbarSelectionHandler={this.toolbarSelectionHandler}

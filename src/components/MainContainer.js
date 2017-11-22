@@ -10,7 +10,7 @@ class MainContainer extends React.Component {
 
 
   render(){
-
+    console.log('props on MainContainer: ', this.props);
     return (
       <div>
         <Header />
@@ -19,6 +19,7 @@ class MainContainer extends React.Component {
         {/* Toolbar goes here */}
         <ToolBar
         msgData={this.props.msgData}
+        composeNewMessage={this.props.composeNewMessage}
         toolbarSelectionHandler={this.props.toolbarSelectionHandler}
         markAsReadBtn={this.props.markAsReadBtn}
         markAsUnReadBtn={this.props.markAsUnReadBtn}
@@ -29,7 +30,9 @@ class MainContainer extends React.Component {
 
 
         {/* Compose New Message goes here */}
-        <ComposeMessage />
+        {this.props.gettingStateForNewMessage ? <ComposeMessage /> : null}
+
+
 
 
         {/* Message List goes here */}
