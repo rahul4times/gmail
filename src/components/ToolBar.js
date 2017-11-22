@@ -5,7 +5,7 @@ class ToolBar extends React.Component {
 
   render(){
 
-    
+
 
 
     // currentSelected and defaultIcon take care for icon for select all button
@@ -42,7 +42,7 @@ class ToolBar extends React.Component {
             </p>
 
             <a className="btn btn-success"
-                onClick={this.props.composeNewMessage}
+                onClick={this.props.hideShowNewMessage}
               >
               <i className="fa fa-plus"></i>
             </a>

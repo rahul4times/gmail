@@ -23,10 +23,28 @@ class App extends Component {
   }
 
   // This function handles show/hide compose message
-  composeNewMessage = () => {
+  hideShowNewMessage = () => {
     let show = this.state.show;
     this.setState({ show: !show });
   }
+
+  postNewMessage = () => {
+    axios.post(`http://localhost:8000/messages`, {
+      "subject": "Clearly everything with an exclamation point is important!", "starred": false,
+      "read": false,
+      "labels": [],
+      "body": "UMMMMM...",
+      "selected": false
+    })
+
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
 
 
   // This function handles select individual message checkbox
@@ -181,15 +199,27 @@ class App extends Component {
 
         <MainContainer
         msgData={this.state.msgData}
-        composeNewMessage={this.composeNewMessage}
+
+        hideShowNewMessage={this.hideShowNewMessage}
+
+        postNewMessage={this.postNewMessage}
+
         gettingStateForNewMessage={this.state.show}
+
         handleMsgCheckbox={this.handleMsgCheckbox}
+
         handleStars={this.handleStars}
+
         toolbarSelectionHandler={this.toolbarSelectionHandler}
+
         markAsReadBtn={this.markAsReadBtn}
+
         markAsUnReadBtn={this.markAsUnReadBtn}
+
         removeMessage={this.removeMessage}
+
         addLabels={this.addLabels}
+        
         removeLabels={this.removeLabels}
         />
 
