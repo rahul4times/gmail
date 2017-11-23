@@ -232,7 +232,7 @@ class App extends Component {
       if(msg.selected){
         console.log('result: ', msg.id);
         axios.patch(`http://localhost:8000/messages/${msg.id}`,{
-          labels: JSON.stringify([msg.labels])
+          labels: JSON.stringify(msg.labels)
         })
         .then(response => {
           console.log('response: ', response);
@@ -242,19 +242,8 @@ class App extends Component {
         .catch(error => {
           console.log(error);
         })
-
-
-
-
       }
     })
-
-
-
-
-
-    //this.setState({msgData: duplicate});
-
   }
 
   // This removes labels
@@ -265,7 +254,22 @@ class App extends Component {
       return msg
     })
 
-    this.setState({ messages: newState })
+    let result = newState.map(msg => {
+      if(msg.selected){
+        console.log('result: ', msg.id);
+        axios.patch(`http://localhost:8000/messages/${msg.id}`,{
+          labels: JSON.stringify([msg.labels.splice(msg.id, 1)])
+        })
+        .then(response => {
+          console.log('response: ', response);
+          let updatedResult = response.data;
+          this.setState({ msgData: updatedResult})
+        })
+        .catch(error => {
+          console.log(error);
+        })
+      }
+    })
 
   }
 
