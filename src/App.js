@@ -256,9 +256,8 @@ class App extends Component {
 
     let result = newState.map(msg => {
       if(msg.selected){
-        console.log('result: ', msg.id);
         axios.patch(`http://localhost:8000/messages/${msg.id}`,{
-          labels: JSON.stringify([msg.labels.splice(msg.id, 1)])
+          labels: JSON.stringify(msg.labels)
         })
         .then(response => {
           console.log('response: ', response);
@@ -280,6 +279,7 @@ class App extends Component {
       <div className="App">
 
         <MainContainer
+
         msgData={this.state.msgData}
 
         hideShowNewMessage={this.hideShowNewMessage}
@@ -303,6 +303,7 @@ class App extends Component {
         addLabels={this.addLabels}
 
         removeLabels={this.removeLabels}
+        
         />
 
       </div>
