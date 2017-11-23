@@ -5,9 +5,6 @@ class ToolBar extends React.Component {
 
   render(){
 
-
-
-
     // currentSelected and defaultIcon take care for icon for select all button
     let currentSelected = this.props.msgData.filter(msg => {
       return msg.selected

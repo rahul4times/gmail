@@ -5,12 +5,10 @@ class MessageSubject extends React.Component {
 
   render(){
 
-
     let readUnread = this.props.msgs.read ? "read" : "unread";
     let msgSelected = this.props.msgs.selected ? "selected" : '';
     let msgStar = this.props.msgs.starred ? "fa-star" : "fa-star-o";
     let checked = msgSelected ? "checked" : "";
-
     let labels = this.props.msgs.labels.map(label =>
       <span className="label label-warning" key={label.id}>{label}</span>)
 
@@ -39,7 +37,6 @@ class MessageSubject extends React.Component {
 
             {/* Label goes here */}
             {labels}
-
 
             {/* Subjects go here */}
             {this.props.msgs.subject}

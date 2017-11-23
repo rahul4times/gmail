@@ -7,14 +7,10 @@ import Footer from './Footer';
 
 
 class MainContainer extends React.Component {
-
-
   render(){
-
     return (
       <div>
         <Header />
-
 
         {/* Toolbar goes here */}
         <ToolBar
@@ -35,16 +31,11 @@ class MainContainer extends React.Component {
         /> : null}
 
 
-
-
         {/* Message List goes here */}
         <MessageList msgData={this.props.msgData}
         handleMsgCheckbox={this.props.handleMsgCheckbox}
         handleStars={this.props.handleStars}
-
         />
-
-
 
         <Footer />
       </div>

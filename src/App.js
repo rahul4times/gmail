@@ -9,7 +9,6 @@ class App extends Component {
     show: false
   }
 
-
   componentDidMount = () =>{
 
     Promise.all([
@@ -27,7 +26,6 @@ class App extends Component {
     let show = this.state.show;
     this.setState({ show: !show });
   }
-
 
   // This function handles composing message
   postNewMessage = (input) => {
@@ -55,8 +53,6 @@ class App extends Component {
     });
 
   }
-
-
 
   // This function handles select individual message checkbox
   handleMsgCheckbox = (selectedMessage) => {
@@ -222,7 +218,6 @@ class App extends Component {
 
   // This adds labels
   addLabels = (input) => {
-    console.log('input: ', input);
     let duplicate = this.state.msgData.map(msg => {
       if(msg.selected && !msg.labels.includes(input)) msg.labels.push(input)
       return {...msg}
@@ -235,7 +230,6 @@ class App extends Component {
           labels: JSON.stringify(msg.labels)
         })
         .then(response => {
-          console.log('response: ', response);
           let updatedResult = response.data;
           this.setState({ msgData: updatedResult})
         })
@@ -248,7 +242,6 @@ class App extends Component {
 
   // This removes labels
   removeLabels = (input) => {
-
     let newState = this.state.msgData.map(msg => {
       if(msg.selected) msg.labels = msg.labels.filter(l => l !== input)
       return msg
@@ -260,7 +253,6 @@ class App extends Component {
           labels: JSON.stringify(msg.labels)
         })
         .then(response => {
-          console.log('response: ', response);
           let updatedResult = response.data;
           this.setState({ msgData: updatedResult})
         })
@@ -303,7 +295,7 @@ class App extends Component {
         addLabels={this.addLabels}
 
         removeLabels={this.removeLabels}
-        
+
         />
 
       </div>
